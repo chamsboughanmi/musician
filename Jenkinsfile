@@ -24,6 +24,6 @@ pipeline {
             echo 'Build fail. Check logs'
         }
     }
-}
+
 
 
