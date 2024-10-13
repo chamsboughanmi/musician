@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('Checkout Github') {
             steps {
-               git branch: 'main', credentialsId: 'jen-doc-git', url: 'https://github.com/chamsboughanmi/musician.git'
+              git branch: 'main', credentialsId: 'jen-doc-git', url: 'https://github.com/chamsboughanmi/musician.git' 
             }
         }
         stage('Install node dependencies') {
             steps {
-                sh 'npm install'
+               sh 'npm install'
             }
         }
         stage('Test code') {
