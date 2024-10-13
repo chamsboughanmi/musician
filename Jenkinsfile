@@ -15,7 +15,7 @@ pipeline {
             }
         }
         }
-    }
+    
     post {
         success {
             echo 'Build complete succesfully !'
@@ -24,6 +24,6 @@ pipeline {
             echo 'Build fail. Check logs'
         }
     }
-
+  }
 
 
