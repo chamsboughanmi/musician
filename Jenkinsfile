@@ -39,7 +39,7 @@ pipeline {
          stage('Push Image to DockerHub'){
                steps { 
                     script {
-                          docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}") {
+                          docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS}") {
                                          
                                         dockerImage.push('latest')
                                         dockerImage.push("${VERSION}")
