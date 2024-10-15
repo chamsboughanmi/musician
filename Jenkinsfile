@@ -29,7 +29,7 @@ pipeline {
             steps {
                     script {
                                                      
-			    dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+			    dockerImage = docker.build("${DOCKER_HUB_REPO}:alpine")
                  
             }
             }
@@ -41,7 +41,7 @@ pipeline {
                     script {
                           docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}") {
                                          
-                                        dockerImage.push('latest')
+                                        dockerImage.push('alpine')
                                         
                              }  
                         }           
