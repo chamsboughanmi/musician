@@ -4,9 +4,9 @@ pipeline {
               nodejs 'NodeJS'
       }
        environment { 
-                   DOCKER_CREDENTIALS_ID = 'dockerhub-jenkins-token'
+                   DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-jenkins-token'
                    DOCKER_HUB_REPO = 'chams96/musician'
-		   VERSION = "${BUILD_NUMBER}" 
+		   DOCKER_REGISTRY = 'https://hub.docker.com/u/chams96'
                     }
     stages {
 
@@ -28,9 +28,9 @@ pipeline {
       stage('Build Docker Image') {
             steps {
                     script {
-
-			    dockerImage = docker.build("${DOCKER_HUB_REPO}:${VERSION}")
-                 dockerImage.tag('latest') 
+                                                     
+			    dockerImage = docker.build("${DOCKER_HUB_REPO}:latest")
+                 
             }
             }
         }
@@ -39,10 +39,10 @@ pipeline {
          stage('Push Image to DockerHub'){
                steps { 
                     script {
-                          docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS}") {
+                          docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_HUB_CREDENTIALS_ID}") {
                                          
                                         dockerImage.push('latest')
-                                        dockerImage.push("${VERSION}")
+                                        
                              }  
                         }           
             }
